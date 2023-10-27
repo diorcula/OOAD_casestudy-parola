@@ -1,6 +1,5 @@
 package nl.han;
 
 public interface Berekening {
-    public void berekenScore();
-
+    public int berekenScore(String woord, long tijd, int aantalgoed);
 }

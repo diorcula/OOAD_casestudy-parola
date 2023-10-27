@@ -23,7 +23,7 @@ public class ParolaMain {
         System.out.print("Make a word, as long as possible, that contains these letters: ");
         String word = scanner.nextLine();
 //
-//        int score = parola.calculateScore(playername, word);
-//        System.out.println("Score: " + score);
+        int score = parola.calculateScore(playername, word);
+        System.out.println("Score: " + score);
     }
 }

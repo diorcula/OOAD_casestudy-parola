@@ -12,7 +12,6 @@ public class Kortantwoordvraag extends Vraag{
 
     @Override
     public boolean checkAntwoord(String gegevenAntwoord) {
-        //TOTO return eerste letter antwoord
         return antwoorden.stream().anyMatch(a -> gegevenAntwoord.toLowerCase().matches(a.getAntwoord().toLowerCase()));
     }
 }

@@ -52,10 +52,18 @@ public class Parola {
 
         for (int i = 0; i < 8; i++) {
             if(quiz.getVraag(i).checkAntwoord(antwoordformulier.getAntwoord(i))){
+                antwoordformulier.vraagGoed();
                 stringBuilder.append(" ").append(quiz.getVraag(i).getLetter());
             }
         }
 
         return stringBuilder.toString();
+    }
+
+    public int calculateScore(String playername, String woord){
+        antwoordformulier.maakWoord(woord);
+
+        // Geef aan welke berekening gebruikt moet worden (BerekeningA of BerekeningB)
+        return antwoordformulier.berekenScore(new ConcreteBerekeningA());
     }
 }
