@@ -1,19 +1,13 @@
 package nl.han;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Parola {
     private static Parola parola;
     private Quiz quiz;
-    private String gebruikersnaam;
     private boolean quizFinished;
     private int huidigeVraagID;
-    private Vraag huidigeVraag;
     private Antwoordformulier antwoordformulier;
-
-    public Parola(){}
 
     public static Parola getInstance(){
         if(parola == null){
@@ -24,7 +18,6 @@ public class Parola {
     }
 
     public void startQuiz(String playername){
-        gebruikersnaam = playername;
         quiz = new Quiz().mockedQuiz();
         antwoordformulier = new Antwoordformulier();
         quizFinished = false;
@@ -32,14 +25,12 @@ public class Parola {
     }
 
     public String nextQuestion(String playername){
-        huidigeVraag = quiz.getVraag(huidigeVraagID);
-
-        if(huidigeVraag instanceof MeerkeuzeVraag){
-            var antwoorden = ((MeerkeuzeVraag) huidigeVraag).getMultiplechoise();
+        if(quiz.getVraag(huidigeVraagID) instanceof MeerkeuzeVraag meerkeuzeVraag){
+            var antwoorden = (meerkeuzeVraag).getMultiplechoise();
             Collections.shuffle(antwoorden);
-            return huidigeVraag.getVraagtekst() + " " + antwoorden.get(0).getAntwoord() + " - " + antwoorden.get(1).getAntwoord() + " - " + antwoorden.get(2).getAntwoord() + " - " + antwoorden.get(3).getAntwoord();
+            return meerkeuzeVraag.getVraagtekst() + " " + antwoorden.get(0).getAntwoord() + " - " + antwoorden.get(1).getAntwoord() + " - " + antwoorden.get(2).getAntwoord() + " - " + antwoorden.get(3).getAntwoord();
         } else {
-            return huidigeVraag.getVraagtekst();
+            return quiz.getVraag(huidigeVraagID).getVraagtekst();
         }
     }
 
@@ -57,14 +48,14 @@ public class Parola {
     }
     
     public String getLettersForRightAnswers(String playername){
-        String letters = "";
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < 8; i++) {
             if(quiz.getVraag(i).checkAntwoord(antwoordformulier.getAntwoord(i))){
-                letters += " " + quiz.getVraag(i).getLetter();
+                stringBuilder.append(" ").append(quiz.getVraag(i).getLetter());
             }
         }
 
-        return letters;
+        return stringBuilder.toString();
     }
 }

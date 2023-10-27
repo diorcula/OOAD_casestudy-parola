@@ -1,7 +1,5 @@
 package nl.han;
 
-import java.util.ArrayList;
-
 public class Kortantwoordvraag extends Vraag{
 
     public Kortantwoordvraag(String vraagtekst, String categorie, Character letter) {

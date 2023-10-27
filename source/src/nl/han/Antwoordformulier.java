@@ -13,8 +13,6 @@ public class Antwoordformulier {
         gegevenAntwoorden.add(gegevenAntwoord);
     }
 
-    public void maakWoord(){}
-
     public String getAntwoord(int i){
         return gegevenAntwoorden.get(i);
     }

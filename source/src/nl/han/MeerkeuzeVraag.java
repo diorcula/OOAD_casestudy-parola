@@ -1,7 +1,6 @@
 package nl.han;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MeerkeuzeVraag extends Vraag{
 
@@ -18,7 +17,6 @@ public class MeerkeuzeVraag extends Vraag{
     }
 
     public boolean checkAntwoord(String gegevenAntwoord){
-        //TODO return eerste letter antwoord
         return antwoorden.stream().anyMatch(a -> gegevenAntwoord.toLowerCase().matches(a.getAntwoord().toLowerCase()) && a.isCorrect());
     }
 }
