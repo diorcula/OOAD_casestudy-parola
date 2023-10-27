@@ -19,9 +19,9 @@ public class ParolaMain {
             parola.processAnswer(playername, answer);
         } while (!parola.quizFinished(playername));
 
-//        System.out.println("You've earned the following letters: " + parola.getLettersForRightAnswers(playername));
-//        System.out.print("Make a word, as long as possible, that contains these letters: ");
-//        String word = scanner.nextLine();
+        System.out.println("You've earned the following letters: " + parola.getLettersForRightAnswers(playername));
+        System.out.print("Make a word, as long as possible, that contains these letters: ");
+        String word = scanner.nextLine();
 //
 //        int score = parola.calculateScore(playername, word);
 //        System.out.println("Score: " + score);

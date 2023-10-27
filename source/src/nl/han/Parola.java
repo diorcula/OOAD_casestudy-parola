@@ -57,10 +57,14 @@ public class Parola {
     }
     
     public String getLettersForRightAnswers(String playername){
+        String letters = "";
+
         for (int i = 0; i < 8; i++) {
-            quiz.getVraag(i).checkAntwoord(antwoordformulier.getAntwoord(i));
+            if(quiz.getVraag(i).checkAntwoord(antwoordformulier.getAntwoord(i))){
+                letters += " " + quiz.getVraag(i).getLetter();
+            }
         }
 
-        return null;
+        return letters;
     }
 }

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class Antwoordformulier {
     private ArrayList<String> gegevenAntwoorden;
 
-    public Antwoordformulier(){}
+    public Antwoordformulier(){
+        gegevenAntwoorden = new ArrayList<>();
+    }
 
     public void addAntwoord(String gegevenAntwoord){
         gegevenAntwoorden.add(gegevenAntwoord);

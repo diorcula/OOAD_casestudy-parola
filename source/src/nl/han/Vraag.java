@@ -19,5 +19,7 @@ public abstract class Vraag {
         return vraagtekst;
     }
 
+    public Character getLetter(){ return letter;}
+
     public abstract boolean checkAntwoord(String gegevenAntwoord);
 }
