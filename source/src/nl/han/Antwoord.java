@@ -9,6 +9,10 @@ public class Antwoord {
         this.correct = correct;
     }
 
+    public Antwoord(String antwoord){
+        this.antwoord = antwoord;
+    }
+
     public String getAntwoord(){
         return antwoord;
     }
