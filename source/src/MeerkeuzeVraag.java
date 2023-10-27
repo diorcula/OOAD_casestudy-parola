@@ -1,12 +1,13 @@
+import java.util.ArrayList;
+
 public class MeerkeuzeVraag extends Vraag{
     private String vraagtekst;
-    private String[] fouteAntwoorden;
-    private String correctAntwoord;
+    private ArrayList<Antwoord> antwoorden;
 
     public MeerkeuzeVraag(String vraagtekst, String fout1, String fout2, String fout3, String correct){
+        antwoorden = new ArrayList<>();
         this.vraagtekst = vraagtekst;
-        this.fouteAntwoorden = {fout1, fout2, fout3};
-        this.correctAntwoord = correct;
+        antwoorden.add(fou)
     }
 
     public boolean checkAntwoord(String gegevenAntwoord){
