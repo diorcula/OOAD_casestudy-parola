@@ -1,29 +1,57 @@
 package nl.han;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Parola {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ParolaController parola = ParolaController.getInstance();
+    private static Parola parola;
+    private Quiz quiz;
+    private String gebruikersnaam;
+    private boolean quizFinished;
+    private int huidigeVraagID;
+    private Vraag huidigeVraag;
 
-        System.out.println("Enter your player name: ");
-        String playername = scanner.nextLine();
+    public Parola(){}
 
-        System.out.println("The 8-question quiz starts. Good luck!");
-        parola.startQuiz(playername);
-        do {
-            System.out.println(parola.nextQuestion(playername));
-            System.out.print("Give your answer to this question: ");
-            String answer = scanner.nextLine();
-            parola.processAnswer(playername, answer);
-        } while (!parola.quizFinished(playername));
+    public static Parola getInstance(){
+        if(parola == null){
+            parola = new Parola();
+        }
 
-        System.out.println("You've earned the following letters: " + parola.getLettersForRightAnswers(playername));
-        System.out.print("Make a word, as long as possible, that contains these letters: ");
-        String word = scanner.nextLine();
+        return parola;
+    }
 
-        int score = parola.calculateScore(playername, word);
-        System.out.println("Score: " + score);
+    public void startQuiz(String playername){
+        gebruikersnaam = playername;
+        quiz = new Quiz().mockedQuiz();
+        quizFinished = false;
+        huidigeVraagID = 0;
+    }
+
+    public String nextQuestion(String playername){
+        huidigeVraag = quiz.getVraag(huidigeVraagID);
+
+        if(huidigeVraag instanceof MeerkeuzeVraag){
+            ArrayList<Antwoord> antwoorden = ((MeerkeuzeVraag) huidigeVraag).getMultiplechoise();
+            Collections.shuffle(antwoorden);
+            return huidigeVraag.getVraagtekst() + " " + antwoorden.get(0).getAntwoord() + " - " + antwoorden.get(1).getAntwoord() + " - " + antwoorden.get(2).getAntwoord() + " - " + antwoorden.get(3).getAntwoord();
+        } else {
+            return huidigeVraag.getVraagtekst();
+        }
+    }
+
+    public void processAnswer(String playername, String antwoord){
+        System.out.println(huidigeVraag.checkAntwoord(antwoord));
+
+        huidigeVraagID++;
+
+        if(huidigeVraagID == 8){
+            quizFinished = true;
+        }
+    }
+
+    public boolean quizFinished(String playername){
+        return quizFinished;
     }
 }

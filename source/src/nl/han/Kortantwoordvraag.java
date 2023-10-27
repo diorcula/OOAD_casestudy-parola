@@ -8,6 +8,7 @@ public class Kortantwoordvraag extends Vraag{
 
     public Kortantwoordvraag(String vraagtekst, String categorie) {
         super(vraagtekst, categorie);
+        antwoorden = new ArrayList<>();
     }
 
     public void addAntwoord(Antwoord antwoord){
@@ -16,6 +17,7 @@ public class Kortantwoordvraag extends Vraag{
 
     @Override
     public boolean checkAntwoord(String gegevenAntwoord) {
+        //TOTO return eerste letter antwoord
         return antwoorden.stream().anyMatch(a -> gegevenAntwoord.toLowerCase().matches(a.getAntwoord().toLowerCase()));
     }
 }

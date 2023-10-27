@@ -17,7 +17,12 @@ public class MeerkeuzeVraag extends Vraag{
         antwoorden.add(new Antwoord(correct, true));
     }
 
+    protected ArrayList<Antwoord> getMultiplechoise(){
+        return antwoorden;
+    }
+
     public boolean checkAntwoord(String gegevenAntwoord){
+        //TODO return eerste letter antwoord
         return antwoorden.stream().anyMatch(a -> gegevenAntwoord.toLowerCase().matches(a.getAntwoord().toLowerCase()) && a.isCorrect());
     }
 }
