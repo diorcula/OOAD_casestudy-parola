@@ -11,6 +11,7 @@ public class Parola {
     private boolean quizFinished;
     private int huidigeVraagID;
     private Vraag huidigeVraag;
+    private Antwoordformulier antwoordformulier;
 
     public Parola(){}
 
@@ -25,6 +26,7 @@ public class Parola {
     public void startQuiz(String playername){
         gebruikersnaam = playername;
         quiz = new Quiz().mockedQuiz();
+        antwoordformulier = new Antwoordformulier();
         quizFinished = false;
         huidigeVraagID = 0;
     }
@@ -33,7 +35,7 @@ public class Parola {
         huidigeVraag = quiz.getVraag(huidigeVraagID);
 
         if(huidigeVraag instanceof MeerkeuzeVraag){
-            ArrayList<Antwoord> antwoorden = ((MeerkeuzeVraag) huidigeVraag).getMultiplechoise();
+            var antwoorden = ((MeerkeuzeVraag) huidigeVraag).getMultiplechoise();
             Collections.shuffle(antwoorden);
             return huidigeVraag.getVraagtekst() + " " + antwoorden.get(0).getAntwoord() + " - " + antwoorden.get(1).getAntwoord() + " - " + antwoorden.get(2).getAntwoord() + " - " + antwoorden.get(3).getAntwoord();
         } else {
@@ -42,8 +44,7 @@ public class Parola {
     }
 
     public void processAnswer(String playername, String antwoord){
-        System.out.println(huidigeVraag.checkAntwoord(antwoord));
-
+        antwoordformulier.addAntwoord(antwoord);
         huidigeVraagID++;
 
         if(huidigeVraagID == 8){
@@ -53,5 +54,13 @@ public class Parola {
 
     public boolean quizFinished(String playername){
         return quizFinished;
+    }
+    
+    public String getLettersForRightAnswers(String playername){
+        for (int i = 0; i < 8; i++) {
+            quiz.getVraag(i).checkAntwoord(antwoordformulier.getAntwoord(i));
+        }
+
+        return null;
     }
 }

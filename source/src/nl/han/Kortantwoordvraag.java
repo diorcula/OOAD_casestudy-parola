@@ -3,12 +3,9 @@ package nl.han;
 import java.util.ArrayList;
 
 public class Kortantwoordvraag extends Vraag{
-    private String vraagtekst;
-    private ArrayList<Antwoord> antwoorden;
 
-    public Kortantwoordvraag(String vraagtekst, String categorie) {
-        super(vraagtekst, categorie);
-        antwoorden = new ArrayList<>();
+    public Kortantwoordvraag(String vraagtekst, String categorie, Character letter) {
+        super(vraagtekst, categorie, letter);
     }
 
     public void addAntwoord(Antwoord antwoord){

@@ -1,12 +1,18 @@
 package nl.han;
 
-public abstract class Vraag {
-    private String vraagtekst;
-    private String categorie;
+import java.util.ArrayList;
 
-    protected Vraag(String vraagtekst, String categorie){
+public abstract class Vraag {
+    protected String vraagtekst;
+    protected String categorie;
+    protected Character letter;
+    protected ArrayList<Antwoord> antwoorden;
+
+    protected Vraag(String vraagtekst, String categorie, Character letter){
         this.vraagtekst = vraagtekst;
         this.categorie = categorie;
+        this.letter = letter;
+        antwoorden = new ArrayList<>();
     }
 
     public String getVraagtekst() {
